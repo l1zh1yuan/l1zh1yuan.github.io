@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="什么是WAFWAF全称叫”Web Application Firewall”，Web应用防火墙是通过执行一系列针对HTTP/HTTPS的安全策略来专门为Web应用提供保护的一款产品。与传统防火墙不同，WAF工作在应用层，能够防御比如SQL注入，XSS，文件包含等攻击。 什么是SSL卸载SSL卸载即对HTTPS流量进行解密，目前大多数网站为了传输内容的安全，都会走HTTPS协议，即在HTTP中加入S">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WAF的SSL卸载">
+<meta property="og:url" content="http://yoursite.com/2019/08/11/WAF的SSL卸载/index.html">
+<meta property="og:site_name" content="Ryan&#39;s Blog">
+<meta property="og:description" content="什么是WAFWAF全称叫”Web Application Firewall”，Web应用防火墙是通过执行一系列针对HTTP/HTTPS的安全策略来专门为Web应用提供保护的一款产品。与传统防火墙不同，WAF工作在应用层，能够防御比如SQL注入，XSS，文件包含等攻击。 什么是SSL卸载SSL卸载即对HTTPS流量进行解密，目前大多数网站为了传输内容的安全，都会走HTTPS协议，即在HTTP中加入S">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-08-11T10:33:30.831Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WAF的SSL卸载">
+<meta name="twitter:description" content="什么是WAFWAF全称叫”Web Application Firewall”，Web应用防火墙是通过执行一系列针对HTTP/HTTPS的安全策略来专门为Web应用提供保护的一款产品。与传统防火墙不同，WAF工作在应用层，能够防御比如SQL注入，XSS，文件包含等攻击。 什么是SSL卸载SSL卸载即对HTTPS流量进行解密，目前大多数网站为了传输内容的安全，都会走HTTPS协议，即在HTTP中加入S">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/08/11/WAF的SSL卸载/">
+
+
+
+
+
+  <title>WAF的SSL卸载 | Ryan's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ryan's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/11/WAF的SSL卸载/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ryan Li">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ryan's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">WAF的SSL卸载</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-11T18:29:12+08:00">
+                2019-08-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络安全/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="什么是WAF"><a href="#什么是WAF" class="headerlink" title="什么是WAF"></a>什么是WAF</h1><p>WAF全称叫”Web Application Firewall”，Web应用防火墙是通过执行一系列针对HTTP/HTTPS的安全策略来专门为Web应用提供保护的一款产品。与传统防火墙不同，WAF工作在应用层，能够防御比如SQL注入，XSS，文件包含等攻击。</p>
+<h1 id="什么是SSL卸载"><a href="#什么是SSL卸载" class="headerlink" title="什么是SSL卸载"></a>什么是SSL卸载</h1><p>SSL卸载即对HTTPS流量进行解密，目前大多数网站为了传输内容的安全，都会走HTTPS协议，即在HTTP中加入SSL层（Secure Sockets Layer，安全套接层），这就给WAF增加了麻烦，要么WAF自己配置证书加解密，要么有其他产品将流量解密了之后再给送给WAF，否则WAF便无法分析HTTPS流量，也就无法发现流量中的攻击行为了。</p>
+<h1 id="在WAF进行SSL卸载会有什么问题"><a href="#在WAF进行SSL卸载会有什么问题" class="headerlink" title="在WAF进行SSL卸载会有什么问题"></a>在WAF进行SSL卸载会有什么问题</h1><h2 id="增加WAF的负荷"><a href="#增加WAF的负荷" class="headerlink" title="增加WAF的负荷"></a>增加WAF的负荷</h2><p>当前的密钥交换使用非对称加密体系，协商好密钥之后，再使用对称密钥进行内容的加密，非对称密钥可以实现在不安全的互联网中协商出安全的密钥，但是这个过程非常消耗计算资源，据实际的某些WAF产品的测试结果来看，HTTPS的解密，设备性能会下降约10倍，除非HTTPS流量小，或者硬件十分强大，否则尽量减少在安全设备上进行SSL的卸载工作。</p>
+<h2 id="证书管理难度大"><a href="#证书管理难度大" class="headerlink" title="证书管理难度大"></a>证书管理难度大</h2><p>一般情况下，我们会习惯在负载均衡设备进行SSL的卸载工作，如果一个企业对外的应用数量庞大，这样证书管理起来将会是个比较头疼的问题。当然，如果原来的在负载均衡上进行卸载的模式已经比较成熟，就需要WAF有成熟稳定的接口能够接替原来负载均衡上的管理模式。</p>
+<h2 id="需要支持SNI技术"><a href="#需要支持SNI技术" class="headerlink" title="需要支持SNI技术"></a>需要支持SNI技术</h2><p>随着IPV4的地址越来越紧缺，很多应用的域名会解析到相同的公网IP上以节省IP地址资源，这就要求传统的透明桥模式的WAF需要支持这个功能，传统透明桥模式的WAF一般都以IP地址作为防护的基本单位，如果为了解密流量开启透明反向代理的功能，一个公网IP，就只能绑定一个证书，因此其他的同个公网IP的域名的访问就会出现证书告警，甚至业务中断。</p>
+<h2 id="部署模式需要改变"><a href="#部署模式需要改变" class="headerlink" title="部署模式需要改变"></a>部署模式需要改变</h2><p>随着TLS（SSL的后继协议）的发展，HTTPS证书中最常用的密钥交换算法有RSA和ECDHE，RSA各种产品支持比较成熟，但不支持前向安全性（PFS，即Perfect Forward Secrecy），而ECDHE是DH（Diffie-Hellman）算法和ECC（Ellipse Curve Cryptography，椭圆曲线）算法的结合体，即能满足前向安全性，也能提升计算速度。传统的WAF经常以旁路模式进行部署，即使是在线串联模式，也只是一个透明设备。而ECDHE算法的流行，<strong>要求WAF必须作为代理才能进行解密</strong>，即无法将未解密的流量送给旁路的WAF进行检测，或者是通过捕捉握手包的方式进行密钥的获取。关于密钥交换算法的更多细节，强烈推荐cloudflare的<a href="https://new.blog.cloudflare.com/keyless-ssl-the-nitty-gritty-technical-details/" target="_blank" rel="noopener">这篇文章</a>。</p>
+<blockquote>
+<p>对于传统部署模式的WAF无法解决ECDHE算法的问题，其实也可以通过禁用非ECDHE算法的方式进行临时解决。不过这一定程度上降低了算法的安全等级，但是http2.0协议的出现，禁用了许多的非DH非ECC的算法，这也迫使WAF的部署模式的改变。</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/10/怎样成为时间管理的高手md/" rel="next" title="【学习记录】怎样成为时间管理的高手">
+                <i class="fa fa-chevron-left"></i> 【学习记录】怎样成为时间管理的高手
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Ryan Li</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是WAF"><span class="nav-number">1.</span> <span class="nav-text">什么是WAF</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是SSL卸载"><span class="nav-number">2.</span> <span class="nav-text">什么是SSL卸载</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#在WAF进行SSL卸载会有什么问题"><span class="nav-number">3.</span> <span class="nav-text">在WAF进行SSL卸载会有什么问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#增加WAF的负荷"><span class="nav-number">3.1.</span> <span class="nav-text">增加WAF的负荷</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#证书管理难度大"><span class="nav-number">3.2.</span> <span class="nav-text">证书管理难度大</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#需要支持SNI技术"><span class="nav-number">3.3.</span> <span class="nav-text">需要支持SNI技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部署模式需要改变"><span class="nav-number">3.4.</span> <span class="nav-text">部署模式需要改变</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ryan Li</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
