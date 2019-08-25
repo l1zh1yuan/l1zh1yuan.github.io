@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="什么是WAFWAF全称叫”Web Application Firewall”，Web应用防火墙是通过执行一系列针对HTTP/HTTPS的安全策略来专门为Web应用提供保护的一款产品。与传统防火墙不同，WAF工作在应用层，能够防御比如SQL注入，XSS，文件包含等攻击。 什么是SSL卸载SSL卸载即对HTTPS流量进行解密，目前大多数网站为了传输内容的安全，都会走HTTPS协议，即在HTTP中加入S">
+<meta name="description" content="随着椭圆迪菲赫尔曼算法的不断流行，传统数据中心常见的透明桥和旁路的部署方式的安全设备，已经失去了解析https流量的能力，为了适应这样的变化，有两种方式可以参考，一种是在前端增加专用的SSL卸载设备，让安全产品解析解密后的流量；一种是直接将安全产品的部署方式更改为代理模式，自己作为SSL的卸载节点，如果有特殊需要，还可以重新加密回去。 什么是WAFWAF全称叫”Web Application Fi">
 <meta property="og:type" content="article">
 <meta property="og:title" content="WAF的SSL卸载">
 <meta property="og:url" content="http://yoursite.com/2019/08/11/WAF的SSL卸载/index.html">
 <meta property="og:site_name" content="Ryan&#39;s Blog">
-<meta property="og:description" content="什么是WAFWAF全称叫”Web Application Firewall”，Web应用防火墙是通过执行一系列针对HTTP/HTTPS的安全策略来专门为Web应用提供保护的一款产品。与传统防火墙不同，WAF工作在应用层，能够防御比如SQL注入，XSS，文件包含等攻击。 什么是SSL卸载SSL卸载即对HTTPS流量进行解密，目前大多数网站为了传输内容的安全，都会走HTTPS协议，即在HTTP中加入S">
+<meta property="og:description" content="随着椭圆迪菲赫尔曼算法的不断流行，传统数据中心常见的透明桥和旁路的部署方式的安全设备，已经失去了解析https流量的能力，为了适应这样的变化，有两种方式可以参考，一种是在前端增加专用的SSL卸载设备，让安全产品解析解密后的流量；一种是直接将安全产品的部署方式更改为代理模式，自己作为SSL的卸载节点，如果有特殊需要，还可以重新加密回去。 什么是WAFWAF全称叫”Web Application Fi">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-11T10:33:30.831Z">
+<meta property="og:updated_time" content="2019-08-25T04:06:34.992Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="WAF的SSL卸载">
-<meta name="twitter:description" content="什么是WAFWAF全称叫”Web Application Firewall”，Web应用防火墙是通过执行一系列针对HTTP/HTTPS的安全策略来专门为Web应用提供保护的一款产品。与传统防火墙不同，WAF工作在应用层，能够防御比如SQL注入，XSS，文件包含等攻击。 什么是SSL卸载SSL卸载即对HTTPS流量进行解密，目前大多数网站为了传输内容的安全，都会走HTTPS协议，即在HTTP中加入S">
+<meta name="twitter:description" content="随着椭圆迪菲赫尔曼算法的不断流行，传统数据中心常见的透明桥和旁路的部署方式的安全设备，已经失去了解析https流量的能力，为了适应这样的变化，有两种方式可以参考，一种是在前端增加专用的SSL卸载设备，让安全产品解析解密后的流量；一种是直接将安全产品的部署方式更改为代理模式，自己作为SSL的卸载节点，如果有特殊需要，还可以重新加密回去。 什么是WAFWAF全称叫”Web Application Fi">
 
 
 
@@ -331,7 +331,8 @@
       
 
       
-        <h1 id="什么是WAF"><a href="#什么是WAF" class="headerlink" title="什么是WAF"></a>什么是WAF</h1><p>WAF全称叫”Web Application Firewall”，Web应用防火墙是通过执行一系列针对HTTP/HTTPS的安全策略来专门为Web应用提供保护的一款产品。与传统防火墙不同，WAF工作在应用层，能够防御比如SQL注入，XSS，文件包含等攻击。</p>
+        <p>随着椭圆迪菲赫尔曼算法的不断流行，传统数据中心常见的透明桥和旁路的部署方式的安全设备，已经失去了解析https流量的能力，为了适应这样的变化，有两种方式可以参考，一种是在前端增加专用的SSL卸载设备，让安全产品解析解密后的流量；一种是直接将安全产品的部署方式更改为代理模式，自己作为SSL的卸载节点，如果有特殊需要，还可以重新加密回去。</p>
+<h1 id="什么是WAF"><a href="#什么是WAF" class="headerlink" title="什么是WAF"></a>什么是WAF</h1><p>WAF全称叫”Web Application Firewall”，Web应用防火墙是通过执行一系列针对HTTP/HTTPS的安全策略来专门为Web应用提供保护的一款产品。与传统防火墙不同，WAF工作在应用层，能够防御比如SQL注入，XSS，文件包含等攻击。</p>
 <h1 id="什么是SSL卸载"><a href="#什么是SSL卸载" class="headerlink" title="什么是SSL卸载"></a>什么是SSL卸载</h1><p>SSL卸载即对HTTPS流量进行解密，目前大多数网站为了传输内容的安全，都会走HTTPS协议，即在HTTP中加入SSL层（Secure Sockets Layer，安全套接层），这就给WAF增加了麻烦，要么WAF自己配置证书加解密，要么有其他产品将流量解密了之后再给送给WAF，否则WAF便无法分析HTTPS流量，也就无法发现流量中的攻击行为了。</p>
 <h1 id="在WAF进行SSL卸载会有什么问题"><a href="#在WAF进行SSL卸载会有什么问题" class="headerlink" title="在WAF进行SSL卸载会有什么问题"></a>在WAF进行SSL卸载会有什么问题</h1><h2 id="增加WAF的负荷"><a href="#增加WAF的负荷" class="headerlink" title="增加WAF的负荷"></a>增加WAF的负荷</h2><p>当前的密钥交换使用非对称加密体系，协商好密钥之后，再使用对称密钥进行内容的加密，非对称密钥可以实现在不安全的互联网中协商出安全的密钥，但是这个过程非常消耗计算资源，据实际的某些WAF产品的测试结果来看，HTTPS的解密，设备性能会下降约10倍，除非HTTPS流量小，或者硬件十分强大，否则尽量减少在安全设备上进行SSL的卸载工作。</p>
 <h2 id="证书管理难度大"><a href="#证书管理难度大" class="headerlink" title="证书管理难度大"></a>证书管理难度大</h2><p>一般情况下，我们会习惯在负载均衡设备进行SSL的卸载工作，如果一个企业对外的应用数量庞大，这样证书管理起来将会是个比较头疼的问题。当然，如果原来的在负载均衡上进行卸载的模式已经比较成熟，就需要WAF有成熟稳定的接口能够接替原来负载均衡上的管理模式。</p>
