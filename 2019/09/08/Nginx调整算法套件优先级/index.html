@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="Nginx作为反向代理，前端增加一个四层交换做负载均衡，构成了传统数据中心的DMZ区常见的组网架构。">
+<meta name="description" content="Nginx作为反向代理，前端增加一个四层交换做负载均衡，构成了传统数据中心的DMZ区常见的组网架构。Web应用也通常是企业对外的窗口，Web应用的安全性就越显重要了，本文讲一下关于Nginx中调整算法优先级的一些内容，也是对传统数据中心的一些SSL卸载会遇到的一些问题。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Nginx调整算法套件优先级">
 <meta property="og:url" content="http://yoursite.com/2019/09/08/Nginx调整算法套件优先级/index.html">
 <meta property="og:site_name" content="Ryan&#39;s Blog">
-<meta property="og:description" content="Nginx作为反向代理，前端增加一个四层交换做负载均衡，构成了传统数据中心的DMZ区常见的组网架构。">
+<meta property="og:description" content="Nginx作为反向代理，前端增加一个四层交换做负载均衡，构成了传统数据中心的DMZ区常见的组网架构。Web应用也通常是企业对外的窗口，Web应用的安全性就越显重要了，本文讲一下关于Nginx中调整算法优先级的一些内容，也是对传统数据中心的一些SSL卸载会遇到的一些问题。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-09-08T14:41:05.725Z">
+<meta property="og:updated_time" content="2019-09-08T16:02:41.957Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Nginx调整算法套件优先级">
-<meta name="twitter:description" content="Nginx作为反向代理，前端增加一个四层交换做负载均衡，构成了传统数据中心的DMZ区常见的组网架构。">
+<meta name="twitter:description" content="Nginx作为反向代理，前端增加一个四层交换做负载均衡，构成了传统数据中心的DMZ区常见的组网架构。Web应用也通常是企业对外的窗口，Web应用的安全性就越显重要了，本文讲一下关于Nginx中调整算法优先级的一些内容，也是对传统数据中心的一些SSL卸载会遇到的一些问题。">
 
 
 
@@ -341,7 +341,7 @@
       
 
       
-        <p>Nginx作为反向代理，前端增加一个四层交换做负载均衡，构成了传统数据中心的DMZ区常见的组网架构。</p>
+        <p>Nginx作为反向代理，前端增加一个四层交换做负载均衡，构成了传统数据中心的DMZ区常见的组网架构。Web应用也通常是企业对外的窗口，Web应用的安全性就越显重要了，本文讲一下关于Nginx中调整算法优先级的一些内容，也是对传统数据中心的一些SSL卸载会遇到的一些问题。</p>
 <a id="more"></a>
 <h1 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h1><p>Nginx是异步框架的网页服务器，也可以用作反向代理、负载平衡器和HTTP缓存。该软件由伊戈尔·赛索耶夫创建并于2004年首次公开发布。2011年成立同名公司以提供支持。2019年3月11日，Nginx公司被F5 Networks以6.7亿美元收购。（这波收购让F5在负载均衡领域简直是独霸群雄）</p>
 <h2 id="SSL算法套件"><a href="#SSL算法套件" class="headerlink" title="SSL算法套件"></a>SSL算法套件</h2><p>Nginx使用<code>ssl_ciphers</code>作为算法套件使用规则的参数，<code>ssl_ciphers</code>用冒号来作为不同算法套件的分割符。下面是Nginx的HTTPS Server默认配置，其中<code>ssl_ciphers  HIGH:!aNULL:!MD5;</code>是默认的算法套件写法。</p>
