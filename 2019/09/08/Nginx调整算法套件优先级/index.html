@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="Nginx作为反向代理，前端增加一个四层交换做负载均衡，构成了传统数据中心的DMZ区常见的组网架构。 NginxNginx是异步框架的网页服务器，也可以用作反向代理、负载平衡器和HTTP缓存。该软件由伊戈尔·赛索耶夫创建并于2004年首次公开发布。2011年成立同名公司以提供支持。2019年3月11日，Nginx公司被F5 Networks以6.7亿美元收购。（这波收购让F5在负载均衡领域简直是独">
+<meta name="description" content="Nginx作为反向代理，前端增加一个四层交换做负载均衡，构成了传统数据中心的DMZ区常见的组网架构。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Nginx调整算法套件优先级">
 <meta property="og:url" content="http://yoursite.com/2019/09/08/Nginx调整算法套件优先级/index.html">
 <meta property="og:site_name" content="Ryan&#39;s Blog">
-<meta property="og:description" content="Nginx作为反向代理，前端增加一个四层交换做负载均衡，构成了传统数据中心的DMZ区常见的组网架构。 NginxNginx是异步框架的网页服务器，也可以用作反向代理、负载平衡器和HTTP缓存。该软件由伊戈尔·赛索耶夫创建并于2004年首次公开发布。2011年成立同名公司以提供支持。2019年3月11日，Nginx公司被F5 Networks以6.7亿美元收购。（这波收购让F5在负载均衡领域简直是独">
+<meta property="og:description" content="Nginx作为反向代理，前端增加一个四层交换做负载均衡，构成了传统数据中心的DMZ区常见的组网架构。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-09-08T14:38:00.862Z">
+<meta property="og:updated_time" content="2019-09-08T14:41:05.725Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Nginx调整算法套件优先级">
-<meta name="twitter:description" content="Nginx作为反向代理，前端增加一个四层交换做负载均衡，构成了传统数据中心的DMZ区常见的组网架构。 NginxNginx是异步框架的网页服务器，也可以用作反向代理、负载平衡器和HTTP缓存。该软件由伊戈尔·赛索耶夫创建并于2004年首次公开发布。2011年成立同名公司以提供支持。2019年3月11日，Nginx公司被F5 Networks以6.7亿美元收购。（这波收购让F5在负载均衡领域简直是独">
+<meta name="twitter:description" content="Nginx作为反向代理，前端增加一个四层交换做负载均衡，构成了传统数据中心的DMZ区常见的组网架构。">
 
 
 
@@ -342,6 +342,7 @@
 
       
         <p>Nginx作为反向代理，前端增加一个四层交换做负载均衡，构成了传统数据中心的DMZ区常见的组网架构。</p>
+<a id="more"></a>
 <h1 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h1><p>Nginx是异步框架的网页服务器，也可以用作反向代理、负载平衡器和HTTP缓存。该软件由伊戈尔·赛索耶夫创建并于2004年首次公开发布。2011年成立同名公司以提供支持。2019年3月11日，Nginx公司被F5 Networks以6.7亿美元收购。（这波收购让F5在负载均衡领域简直是独霸群雄）</p>
 <h2 id="SSL算法套件"><a href="#SSL算法套件" class="headerlink" title="SSL算法套件"></a>SSL算法套件</h2><p>Nginx使用<code>ssl_ciphers</code>作为算法套件使用规则的参数，<code>ssl_ciphers</code>用冒号来作为不同算法套件的分割符。下面是Nginx的HTTPS Server默认配置，其中<code>ssl_ciphers  HIGH:!aNULL:!MD5;</code>是默认的算法套件写法。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"># HTTPS server</span><br><span class="line">#</span><br><span class="line">#server &#123;</span><br><span class="line">#    listen       443 ssl;</span><br><span class="line">#    server_name  localhost;</span><br><span class="line"></span><br><span class="line">#    ssl_certificate      cert.pem;</span><br><span class="line">#    ssl_certificate_key  cert.key;</span><br><span class="line"></span><br><span class="line">#    ssl_session_cache    shared:SSL:1m;</span><br><span class="line">#    ssl_session_timeout  5m;</span><br><span class="line"></span><br><span class="line">#    ssl_ciphers  HIGH:!aNULL:!MD5;</span><br><span class="line">#    ssl_prefer_server_ciphers  on;</span><br><span class="line"></span><br><span class="line">#    location / &#123;</span><br><span class="line">#        root   html;</span><br><span class="line">#        index  index.html index.htm;</span><br><span class="line">#    &#125;</span><br><span class="line">#&#125;</span><br></pre></td></tr></table></figure>
