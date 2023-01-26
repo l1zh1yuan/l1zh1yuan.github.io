@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="突然又使用了一下chatGPT，来聊一下关于解决一个excel公式问题的使用感受和思考。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="跟chatGPT讨论关于excel的问题">
+<meta property="og:url" content="http://yoursite.com/2023/01/25/人工智能ChatGPT的使用感受/index.html">
+<meta property="og:site_name" content="Ryan&#39;s Blog">
+<meta property="og:description" content="突然又使用了一下chatGPT，来聊一下关于解决一个excel公式问题的使用感受和思考。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2023-01-25T09:23:23.974Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="跟chatGPT讨论关于excel的问题">
+<meta name="twitter:description" content="突然又使用了一下chatGPT，来聊一下关于解决一个excel公式问题的使用感受和思考。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2023/01/25/人工智能ChatGPT的使用感受/">
+
+
+
+
+
+  <title>跟chatGPT讨论关于excel的问题 | Ryan's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ryan's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2023/01/25/人工智能ChatGPT的使用感受/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ryan Li">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ryan's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">跟chatGPT讨论关于excel的问题</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2023-01-25T03:19:13+08:00">
+                2023-01-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/人工智能/" itemprop="url" rel="index">
+                    <span itemprop="name">人工智能</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/人工智能/闲聊/" itemprop="url" rel="index">
+                    <span itemprop="name">闲聊</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2023/01/25/人工智能ChatGPT的使用感受/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2023/01/25/人工智能ChatGPT的使用感受/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2023/01/25/人工智能ChatGPT的使用感受/" class="leancloud_visitors" data-flag-title="跟chatGPT讨论关于excel的问题">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>突然又使用了一下chatGPT，来聊一下关于解决一个excel公式问题的使用感受和思考。</p>
+<a id="more"></a>
+
+<h2 id="首次接触"><a href="#首次接触" class="headerlink" title="首次接触"></a>首次接触</h2><p>去年的时候chatGPT（下面就简称ta为CG吧）就开始火起来了，然后所有人都在疯狂的和ta对话，我也第一时间使用了，当时使用的时候没有感觉到CG特别厉害，已经不太记得当时问了什么问题了，不过别人在推上截图的关于他们与CG的对话，的确让人感到惊艳，印象比较深刻的是有个推主说他30多岁了还是处男，CG给到的回复还是相当可以的。然后其他的大部分是一些程序员让CG帮忙写一段代码，或者职场人士让CG帮忙写邮件，都有一些比较成功的案例，而且还可以让CG带相应的语境来写，从写出来的内容上看，还是挺高质量的。<br>我自己在使用时，当时的CG一直说ta只描述事实，不表达观点，这点倒是让我觉得离我真正想像的AI有一定的差距。</p>
+<h2 id="让CG帮忙解决excel问题"><a href="#让CG帮忙解决excel问题" class="headerlink" title="让CG帮忙解决excel问题"></a>让CG帮忙解决excel问题</h2><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>已经被我遗忘了的CG突然又开始用起来是有个机缘巧合：要用excel来统计一下我们的“麻友战绩”。<br>“麻友战绩”是指家里人组成的打麻将小团队，应该是从牛年开始，几乎每个星期的周六晚上都会聚在一起打一次麻将，然后会用excel表格统计一下每次打麻将之后的输赢结果，于是需求就出来了：有一个排行榜， 就是期间赢钱最多的那个人是谁，在哪一天发生的，用函数自动生成。其实就是找到多行多列表格里面的最大值，并输出对应的行列值（行值是日期，列值是人名）。</p>
+<h3 id="使用CG的过程"><a href="#使用CG的过程" class="headerlink" title="使用CG的过程"></a>使用CG的过程</h3><p>首先我问了一下CG：</p>
+<blockquote>
+<p>excel如何找到最大值并返回对应的行列名 </p>
+</blockquote>
+<p>CG回答：</p>
+<blockquote>
+<p>In Excel, there are several ways to find the maximum value in a range of cells and return the corresponding row and column names. Here are a few methods:</p>
+<ol>
+<li>Using the “MAX” and “MATCH” functions: The “MAX” function can be used to find the maximum value in a range of cells, and the “MATCH” function can be used to find the position of the maximum value within the range. Once the position is known, you can use the “ROW” and “COLUMN” functions to return the corresponding row and column names.<br>For example, if the range of cells containing the data is A1:C5, you can use the following formula to find the maximum value:</li>
+</ol>
+<p>=MAX(A1:C5) </p>
+<p>Then, you can use the following formula to find the position of the maximum value within the range:</p>
+<p>=MATCH(MAX(A1:C5),A1:C5,0) </p>
+<p>Finally, you can use the following formulas to return the corresponding row and column names:</p>
+<p>=ROW(A1:C5)+MATCH(MAX(A1:C5),A1:C5,0)-1</p>
+<p>=COLUMN(A1:C5)+MATCH(MAX(A1:C5),A1:C5,0)-1</p>
+<ol start="2">
+<li>Using the “INDEX” and “MATCH” functions: Another method is to use the “INDEX” and “MATCH” functions together. The “INDEX” function can be used to return the value at a specific position within a range of cells, and the “MATCH” function can be used to find the position of the maximum value. Once the position is known, you can use the “ROW” and “COLUMN” functions to return the corresponding row and column names.<br>For example, if the range of cells containing the data is A1:C5, you can use the following formula to find the maximum value:</li>
+</ol>
+<p>=MAX(A1:C5)</p>
+<p>Then, you can use the following formula to find the position of the maximum value within the range:</p>
+<p>=MATCH(MAX(A1</p>
+</blockquote>
+<p>可能是回答的内容太长，所以这个问题没有回答完就停住了，后面问了几次还是这样，这个答案是有问题的，excel报错了，所以我直接继续往下问了：</p>
+<blockquote>
+<p>当我输入“=MATCH(MAX(A1:C5),A1:C5,0)”，excel提示我“值不可用”</p>
+</blockquote>
+<p>CG回答：</p>
+<blockquote>
+<p>The “MATCH” function can return the “N/A” error message when the value you are trying to match is not found in the specified range. In this case, it means that the maximum value in the range A1:C5 is not present in that range.</p>
+<p>One possible reason for this error message is that the cells in the range A1:C5 contain formulas or text, rather than numeric values. The “MAX” function only works with numeric values, so if the cells in the range contain formulas or text, it will not return the maximum value.</p>
+<p>Another possible reason is that there are empty cells within the range, in that case the MAX function will consider the empty cells as 0 and it will not match the real maximum value.</p>
+<p>To resolve this issue, you can try the following:</p>
+<ul>
+<li>Make sure that the cells in the range A1:C5 contain only numeric values.</li>
+<li>Use the formula =MAX(A1:C5) to check if the maximum value is returned, if not then check if there are any empty cells or non-numeric values within the range.</li>
+<li>You can also use the formula =MAX(IF(A1:C5&lt;&gt;””,A1:C5)) which will remove the empty cells or non-numeric values and return the real maximum value.</li>
+<li>Then use the MATCH function again to find the position of the maximum value.</li>
+</ul>
+<p>Alternatively, you can use the “LOOKUP” function to find the maximum value in the range and return the corresponding row and column names.</p>
+</blockquote>
+<p>这个时候CG还没有发现问题是处在Match函数上，以为是我的单元格里面有函数或者文本或者是有空的单元格，我的真实场景下的确会有空的单元格，所以必须要适配这样的场景，其实即便我改成全部都是非空的值，仍然是报错的，这时候CG的焦点还没有到Match函数上，于是我继续询问：</p>
+<blockquote>
+<p>MAX函数返回是正常的，用了MATCH之后返回错误</p>
+</blockquote>
+<p>CG回答：</p>
+<blockquote>
+<p>If the MAX function is returning the correct maximum value, but the MATCH function is returning an “N/A” error message, it could be due to one of the following reasons:</p>
+<ol>
+<li><p>The range specified in the MATCH function is not the same as the range used in the MAX function. Make sure that the ranges in both functions are identical, and that they contain the same cells.</p>
+</li>
+<li><p>The MATCH function is looking for an exact match, but the maximum value returned by the MAX function is not an exact match with any value in the specified range. To fix this, you can use the MATCH function with the match_type set to 1, which will return the position of the largest value that is less than or equal to the lookup_value. Like this =MATCH(MAX(A1:C5),A1:C5,1)</p>
+</li>
+<li><p>There might be some formatting issues with the cells in the range. The MATCH function may be unable to match the maximum value due to formatting differences between the cells in the range and the value returned by the MAX function. Make sure that the cells in the range have the same formatting as the maximum value.</p>
+</li>
+<li><p>There might be hidden rows or columns in the range. The MATCH function will only search the visible cells in the range, so if there are any hidden rows or columns, the maximum value may be located in one of those hidden cells. Make sure that all rows and columns in the range are visible.</p>
+</li>
+<li><p>There might be duplicate values in the range. MATCH function will only return the position of the first match it finds, if there are duplicates the MATCH function will not return the position of the actual maximum value.</p>
+</li>
+</ol>
+<p>Try the above suggestions and if you still have issues, let me know and I’ll try to help you further.</p>
+</blockquote>
+<p>这里第四条提到了可能会有隐藏的行列，倒是一个值得注意的事项，第五个理论上不会导致报错，所以CG还是没有说到点子上，于是我还是忍不住点出来了问题的关键点（其实我本来应该让CG自己去思考看发现的，不知道我一直跟他说结果错误的时候他会不会思考到Match函数上去）：</p>
+<blockquote>
+<p>还是报错，如果我改成是同一行的数据，就不会报错，是不是match只能用在某一行或某一列，而不能是一个范围</p>
+</blockquote>
+<p>CG回答：</p>
+<blockquote>
+<p>You are correct that the MATCH function is typically used to find the position of a value within a single row or column, rather than a range of cells that spans multiple rows and columns.</p>
+<p>When you use the MATCH function with a range that spans multiple rows and columns, it will search for the value in the first column of the range, and then return the position of the value within that column.</p>
+<p>If you want to find the position of the maximum value within a range that spans multiple rows and columns, you could try using the INDEX and MATCH functions together.</p>
+<p>For example, the following formula will return the position of the maximum value in the range A1:C5:</p>
+<p>=MATCH(MAX(A1:C5), INDEX(A1:C5, 0,1), 0)</p>
+<p>This formula uses the INDEX function to create a single-column array of the values in the range A1:C5, and then the MATCH function looks for the maximum value in that array.</p>
+<p>Another option, would be to use the INDEX and MAX functions together to return the cell address of the maximum value in the range, like this:<br>=INDEX(A1:C5,MATCH(MAX(A1:C5),A1:C5,0),1)</p>
+<p>This formula will return the address of the cell in the range A1:C5 that contains the maximum value.</p>
+<p>It’s important to note that the above methods will return the cell address of the first maximum value found, in case there are multiple occurrences of the maximum value.</p>
+<p>Keep in mind that the best approach will depend on your specific needs and the structure of your data. It’s always good to experiment with different methods to find the one that works best for you.</p>
+</blockquote>
+<p>终于在我直接点出来问题的关键之后，也说出来了Match问题的局限性，但是其实他第二段说的也是个错误的说法，即使我把样本改成在第一个单元格的值最大，一样是报错的，所以Match函数本身就是无法直接在多行多列的场景下使用，但是CG提出了一个特别的想法还是不错的，就是要把后面的多行多列的场景，通过index转换成一个单数列的场景，很可惜，这种做法还是失败的，但是想法还是接近了人类的想法，这个时候我不想给CG提示了，而是直接告诉CG上述的方法均不可行，看CG能不能想出来正确的做法：</p>
+<blockquote>
+<p>以上的方法还是不行</p>
+</blockquote>
+<p>CG回答：</p>
+<blockquote>
+<p>I apologize for any confusion caused by my previous response. You are correct that using the MATCH or INDEX and MATCH function to find the position of the maximum value within a range that spans multiple rows and columns is not the correct approach.</p>
+<p>If you want to find the maximum value in a range that spans multiple rows and columns, you can use the MAX function as you mentioned before.</p>
+<p>To find the row and column of the cell containing the maximum value, one approach you can use is to use the INDEX and MATCH functions together.&gt; </p>
+<p>For example, if your data is in the range A1:C5, you can use the following formula to find the row of the cell containing the maximum value:&gt; </p>
+<p>=MATCH(MAX(A1:C5),A1:C5,0)&gt; </p>
+<p>This formula will return the row number of the cell containing the maximum value.&gt; </p>
+<p>To find the column of the cell containing the maximum value, you can use the following formula:&gt; </p>
+<p>=MATCH(MAX(A1:C5),A1:C5,0)&gt; </p>
+<p>This formula will return the column number of the cell containing the maximum value.&gt; </p>
+<p>Keep in mind that these formulas will only return the position of the first occurrence of the maximum value, if there are multiple cells with the same maximum value the formula will return the position of the first one.&gt; </p>
+<p>I apologize for any confusion caused by my previous response, and I hope this information is helpful to you. If you have any further questions or concerns, please feel free to ask.</p>
+</blockquote>
+<p>CG居然会道歉，这也让我增加了好感，可能也是更接近人类的一种表现吧，CG虽然知道了自己的问题所在，但是仍然在继续使用Match函数，而且没有新的变化，真的是前后思维不一致啊，我估计在实际的运算过程当中，前面的道歉和后面的解法是独立的运算，所以有一种“人格分裂”的感觉，而且上面的回答有明显的问题，且不说两个公式本身就是前面提到的有问题的公式，关键是两个公式是一样的，结果CG说他们会分别返回行值和列值，这就有点离谱了，我直接点出它的问题：</p>
+<blockquote>
+<p>上面两个公式是一样的，怎么一个返回行值，一个返回列值？</p>
+</blockquote>
+<p>CG回答：</p>
+<blockquote>
+<p>I apologize for the mistake in my previous response. The two formulas I provided are indeed the same, and neither of them will return the column number of the cell containing the maximum value.&gt; </p>
+<p>To find the row and column of the cell containing the maximum value, you can use the INDEX and MATCH functions together with the MAX function.&gt; </p>
+<p>Here is an example of how you can find the row of the cell containing the maximum value:&gt; </p>
+<p>=MATCH(MAX(A1:C5),A1:C5,0)&gt; </p>
+<p>This formula will return the row number of the cell containing the maximum value.&gt; </p>
+<p>To find the column of the cell containing the maximum value, you can use the following formula:&gt; </p>
+<p>=MATCH(MAX(A1:C5),INDEX(A1:C5,MATCH(MAX(A1:C5),A1:C5,0),0),0)&gt; </p>
+<p>This formula will return the column number of the cell containing the maximum value.&gt; </p>
+<p>It’s worth noting that these formulas assume that the data is in range A1:C5, and you may need to adjust the range accordingly.&gt; </p>
+<p>I apologize again for the mistake in my previous response, I hope this explanation will help you. If you have any further questions or concerns, please feel free to ask.</p>
+</blockquote>
+<p>到这里我发现CG已经无法解决我的问题了，即便我在最后面明确让他不要用match函数，还是给出了错误的公式（第一次明确让他不要用match函数的时候，居然还是使用了），于是我就不再继续问他这个问题了，失去了兴趣。</p>
+<h2 id="还是有一些收获的"><a href="#还是有一些收获的" class="headerlink" title="还是有一些收获的"></a>还是有一些收获的</h2><p>CG可能在类似于给他一道明确的题目求解的时候会有比较出色的表现（这包括你把用例都给他之类的），说不定这个题目我直接给案例然后把想要的结果告诉他，也许会有更好的结果，这个过程实际上就是平时我遇到问题的时候去google搜索的一个过程，不过这个可以持续的进行问题的明确，我个人觉得是个更好的分析问题的过程。<br>另外一个比较大的惊喜是CG的一些表述都很精准到位而且比较拟人化，当然拟人化的结果应该不单单是人类的优点，人类的缺点都包含在里面，《克拉拉与太阳》这本书里面提到AI与人类的最大的区别就是AI没有自私的行为，但是如果打造出来的AI跟人类一模一样，那打造出来有什么用呢。<br>关于AI的话题思考讨论起来无穷无尽，鉴于今天大降温，有点感冒了，大脑不太想动，先聊到这里，后续有机会的话再继续聊一聊。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2023/01/20/2022年总结/" rel="next" title="我的2022">
+                <i class="fa fa-chevron-left"></i> 我的2022
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Ryan Li</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#首次接触"><span class="nav-number">1.</span> <span class="nav-text">首次接触</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#让CG帮忙解决excel问题"><span class="nav-number">2.</span> <span class="nav-text">让CG帮忙解决excel问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#背景"><span class="nav-number">2.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用CG的过程"><span class="nav-number">2.2.</span> <span class="nav-text">使用CG的过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#还是有一些收获的"><span class="nav-number">3.</span> <span class="nav-text">还是有一些收获的</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ryan Li</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '2OEjKV6a2VpTmP7dpmxAkq87-MdYXbMMI',
+        appKey: 'x4Sg7vTlrTrI5LyQA9UVkSrv',
+        placeholder: '请畅所欲言',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("2OEjKV6a2VpTmP7dpmxAkq87-MdYXbMMI", "x4Sg7vTlrTrI5LyQA9UVkSrv");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
